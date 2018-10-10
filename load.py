@@ -1,4 +1,5 @@
 from sklearn import datasets
+from sklearn.cross_validation import KFold
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.preprocessing import StandardScaler
@@ -132,7 +133,7 @@ print("accuracy of Gaussian is {:.2f}%".format(accuracy))
 # KNN STUFF
 ##################################################
 classifier = KNNClassifier()
-model = classifier.fit(data_train, target_train, 3)
+model = classifier.fit(data_train, target_train, 5)
 target_predicted_knn = model.predict(data_test, target_test)
 # print(len(target_test))
 
@@ -148,3 +149,13 @@ accuracy_knn *= 100
 
 #print accuracy
 print("accuracy of KNN is {:.2f}%".format(accuracy_knn))
+
+
+###############################
+# Random stuff
+###############################
+x = [1,2,3,4,5,6,7,8,9,10,11,12]
+kf = KFold(12, n_folds=3)
+
+for train_index, test_index in kf:
+    print(train_index, test_index)
